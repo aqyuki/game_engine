@@ -10,3 +10,4 @@ sdl2 = { default-features = false, version = "0.35.2", features = [
   "gfx",
   "mixer",
 ] }
+anyhow = { version = "1.0.95" }
