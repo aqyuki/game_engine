@@ -71,6 +71,13 @@ impl Engine {
         canvas.clear();
         canvas.present();
 
+        // FPS Manager
+        let mut fps_manager = sdl2::gfx::framerate::FPSManager::new();
+        match fps_manager.set_framerate(60) {
+            Ok(_) => (),
+            Err(e) => eprintln!("Failed to set framerate: {}", e),
+        }
+
         'running: loop {
             for event in event_pump.poll_iter() {
                 match event {
@@ -99,6 +106,9 @@ impl Engine {
                     _ => (),
                 }
             }
+
+            // FPS制御
+            fps_manager.delay();
         }
 
         Ok(())
